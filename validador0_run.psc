@@ -40,7 +40,37 @@ Algoritmo validador0_run
 			// Subcadena funciona así: SubCadena(cadena,desde,hasta)
 			digito = Subcadena(run, largoRun+2, largoRun+2);
 			digito = Mayusculas(digito);
-		
+			
+			// Recorro el run haciendo la multiplicación de guardando la acumulación del producto
+			para i<-largoRun hasta 0 con paso -1 Hacer
+				multiplica = multiple * ConvertirANumero(Subcadena(run, i, i));
+				acumulador = acumulador + multiplica;
+				
+				multiple = multiple + 1;
+				
+				si (multiple > 7) entonces
+					multiple <- 2;
+				FinSi
+			FinPara
+			
+			resto = acumulador mod 11;
+			dig = 11 - resto; // Variable auxiliar
+			
+			si (dig = 11) entonces
+				digito2 = "0";
+			sino si (dig = 10) entonces
+					digito2 = "K";
+				SiNo
+					digito2 = ConvertirATexto(dig);
+				FinSi
+			FinSi
+			
+			// Preguntamos si el run ingresado corresponde al digito2 verificado
+			si (digito = digito2) entonces
+				escribir("El run ingresado es correcto");
+			SiNo
+				escribir("err: run ingresado no es correcto");
+			FinSi
 			
 		sino 
 			characteresRun <- falso;
